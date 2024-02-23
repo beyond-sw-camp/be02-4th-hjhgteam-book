@@ -1,0 +1,1 @@
+<img src="./DEVOPS/img/architecture_1.PNG">
