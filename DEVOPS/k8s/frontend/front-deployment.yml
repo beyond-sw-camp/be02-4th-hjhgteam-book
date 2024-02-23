@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-deployment
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      type: front
+  template:
+    metadata:
+      labels:
+        type: front
+    spec:
+      containers:
+        - name: front-container
+          image: kimhyeonkyun123/frontk8sjenkins:1.VERSION
+          ports:
+            - containerPort: 80
+      terminationGracePeriodSeconds: 5

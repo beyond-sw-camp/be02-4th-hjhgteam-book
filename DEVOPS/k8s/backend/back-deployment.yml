@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-deployment
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      type: back
+  template:
+    metadata:
+      labels:
+        type: back
+    spec:
+      containers:
+        - name: back-container
+          image: kimhyeonkyun123/backk8sjenkins:1.VERSION
+          ports:
+            - containerPort: 8080
+          env:
+            - name: CONFIG_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: back-config
+                  key: CONFIG_SERVER
+            - name: APPLICATION_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: back-config
+                  key: APPLICATION_NAME
+            - name: APPLICATION_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: back-config
+                  key: APPLICATION_ENV
+      terminationGracePeriodSeconds: 5
