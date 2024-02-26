@@ -9,17 +9,22 @@ spec:
   minReadySeconds: 10
   selector:
     matchLabels:
-      type: back
+      resource: memory
   template:
     metadata:
       labels:
-        type: back
+        resource: memory
     spec:
       containers:
         - name: back-container
           image: kimhyeonkyun123/backk8sjenkins:1.VERSION
           ports:
             - containerPort: 8080
+          resources:
+            requests:
+              memory: 1Gi
+            limits:
+              memory: 2Gi
           env:
             - name: CONFIG_SERVER
               valueFrom:
