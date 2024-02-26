@@ -19,12 +19,33 @@
 ## 📌 프로젝트 목표
 
 운영중인 환경에 CI/CD 적용
+@@@ 
+왜 ci/cd 해야하는지 간략하게
 
 
 
 ## 🖥️ 운영 환경
 <img src="./img/k8s아키텍처_v3.PNG">
 <img src="./img/서비스아키텍처_v3.PNG">
+
+@@@
+대시보드에서 클러스터 노드 사진 추가
+	시스템 아키텍처 노드 구성
+간단한 설명 hpa로 최대 몇개 까지 연결되는지 등등
+로드밸런서,클러스터 ip로 이루어진부분들
+	아키텍처 사진
+마찬가지 간단하게
+
+## 🔍 STACKS
+
+
+&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white&color=black">
+<img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=Git&logoColor=white&color=ffa500">
+<img src="https://img.shields.io/badge/Jenkins-77dd19?style=flat&logo=jenkins&logoColor=white"/>
+<img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=Docker&logoColor=black&color=blue"/>
+<img src="https://img.shields.io/badge/Kubernetes-326CE5?style=flat&logo=Kubernetes&logoColor=blue&color=skyblue"/>
+&nbsp;&nbsp;
 
 
 ## ✨ CI/CD 시나리오 설명
