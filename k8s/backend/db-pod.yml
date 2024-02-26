@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql-pod
+  labels:
+     app: db
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: hhj
+  containers:
+  - name: mysql
+    image: mysql:latest
+    envFrom:
+    - configMapRef
+        name: mysql-cm
+    volumeMounts:
+    - name: mysql-vol
+      mountPath: /var/lib/mysql
+  volumes:
+  - name : mysql-vol
+    persistentVolumeClaim:
+      claimName: mysql-pvc
