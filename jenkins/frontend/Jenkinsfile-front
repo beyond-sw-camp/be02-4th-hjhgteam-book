@@ -1,0 +1,72 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('git clone') {
+            steps {
+                git branch: 'master', url: 'https://github.com/Hyeon-Kyun/fronttest'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                    sh 'npm run build'
+                }
+            }
+        }
+
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    withCredentials([
+                        usernamePassword(credentialsId: 'dockerjenkins', usernameVariable: 'DOCKERID', passwordVariable: 'DOCKERPW')
+                    ]) {
+                        def dockerImage = "kimhyeonkyun123/frontk8sjenkins:1.${BUILD_NUMBER}"
+
+                        sh "docker build -t $dockerImage ."
+                        sh "docker login -u $DOCKERID -p $DOCKERPW"
+                        sh "docker push $dockerImage"
+                    }
+                }
+            }
+        }
+
+        stage('SSH Transfer and Kubernetes Deployment') {
+            steps {
+                script {
+                    sshPublisher(
+                        continueOnError: false, 
+                        failOnError: true,
+                        publishers: [
+                            sshPublisherDesc(
+                                configName: 'jenkins',
+                                verbose: true,
+                                transfers: [
+                                    sshTransfer(
+                                        sourceFiles: 'front-deployment.yml',
+                                        remoteDirectory: '/root/',
+                                        execCommand: 'sed -i "s/VERSION/$BUILD_NUMBER/g" /root/front-deployment.yml'
+                                    ),
+                                    sshTransfer(
+                                        execCommand: 'kubectl apply -f /root/front-deployment.yml'
+                                    )
+                                ]
+                            )
+                        ]
+                    )
+                }
+            }
+        }
+    }
+
+}

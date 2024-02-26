@@ -9,15 +9,20 @@ spec:
   minReadySeconds: 10
   selector:
     matchLabels:
-      type: front
+      resource: memory
   template:
     metadata:
       labels:
-        type: front
+        resource: memory
     spec:
       containers:
         - name: front-container
           image: kimhyeonkyun123/frontk8sjenkins:1.VERSION
           ports:
             - containerPort: 80
+          resources:
+            requests:
+              memory: 1Gi
+            limits:
+              memory: 2Gi
       terminationGracePeriodSeconds: 5

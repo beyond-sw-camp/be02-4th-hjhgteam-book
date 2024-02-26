@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-deployment
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      type: config
+  template:
+    metadata:
+      labels:
+        type: config
+    spec:
+      containers:
+        - name: config-container
+          image: kimhyeonkyun123/configk8sjenkins:1.VERSION
+          ports:
+            - containerPort: 9999
+          env:
+            - name: CONFIG_SERVER_GIT_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: confser-config
+                  key: CONFIG_SERVER_GIT_URI
+            - name: GIT_LABEL
+              valueFrom:
+                configMapKeyRef:
+                  name: confser-config
+                  key: GIT_LABEL
+            - name: GIT_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: confser-config
+                  key: GIT_PASSWORD
+            - name: GIT_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: confser-config
+                  key: GIT_USERNAME
+      terminationGracePeriodSeconds: 5
