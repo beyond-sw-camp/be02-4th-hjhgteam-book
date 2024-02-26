@@ -26,14 +26,18 @@
 쿠버네티스 적용 
 => 자동 로드 밸런싱을 통해 동일한 환경을 제공하여 버그를 최소화할 수 있습니다. 클러스터 내에서 자원이 자동으로 분산되어 부하를 조절하고, 모든 서비스가 안정적으로 운영되고 개발 및 배포 과정을 더욱 효율적으로 만들어 줍니다.
 
+-  클러스터 노드 스펙
+
 <img src="./img/클러스터노드.png">
-클러스터 노드 스펙
+
+-  k8s 아키텍처
 
 <img src="./img/k8s아키텍처_v3.PNG">
 마스터 1대 , 워커3대로 클러스터를 구성
 Calico CNI를 사용해 연결하였고 metalib를 사용해 LoadBalancing 을 하였습니다.
 Rolling Update를 이용해 이전 버전과 새 버전의 파드를 점진적으로 교체하여 가용성을 유지하였습니다.
 
+-  서비스 아키텍처
 
 <img src="./img/서비스아키텍처_v3.PNG">
 StatefulSet을 사용해 복체 MySQL을 사용한다.  
@@ -50,13 +54,7 @@ HPA를 사용하여 프론트와 백엔드를 스케일링하였습니다.
 
 
 
-<img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white&color=black">
-<img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=Git&logoColor=white&color=ffa500">
-<img src="https://img.shields.io/badge/Jenkins-77dd19?style=flat&logo=jenkins&logoColor=white"/>
-<img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=Docker&logoColor=black&color=blue"/>
-<img src="https://img.shields.io/badge/Kubernetes-326CE5?style=flat&logo=Kubernetes&logoColor=blue&color=skyblue"/>
-<img src="https://img.shields.io/badge/jest-C21325?style=for-the-badge&logo=jest&logoColor=white">
-<img src="https://img.shields.io/badge/slack-4A154B?style=for-the-badge&logo=slack&logoColor=white">
+<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white&color=black"><img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white&color=ffa500"><img src="https://img.shields.io/badge/Jenkins-77dd19?style=for-the-badge&logo=jenkins&logoColor=white"/><img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=black&color=blue"/><img src="https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=Kubernetes&logoColor=blue&color=skyblue"/><img src="https://img.shields.io/badge/jest-C21325?style=for-the-badge&logo=jest&logoColor=white"><img src="https://img.shields.io/badge/slack-4A154B?style=for-the-badge&logo=slack&logoColor=white">
 
 
 
