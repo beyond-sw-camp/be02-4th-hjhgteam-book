@@ -11,7 +11,7 @@ describe("로그인", () => {
       .setChromeOptions(new chrome.Options().addArguments("--headless"))
       .build();
 
-    await driver.get("http://192.168.0.141/");
+    await driver.get("http://10.10.10.100/");
   }, 30000);
 
   afterAll(async () => {

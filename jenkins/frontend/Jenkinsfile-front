@@ -29,6 +29,17 @@ pipeline {
                 }
             }
         }
+        
+        stage('Test') {
+            steps {
+                script {
+                    def testResult = sh(script: 'npm run test', returnStatus: true)
+                    if (testResult != 0) {
+                        currentBuild.result = 'FAILURE'
+                    }
+                }
+            }
+        }
 
 
         stage('Build Docker Image') {
