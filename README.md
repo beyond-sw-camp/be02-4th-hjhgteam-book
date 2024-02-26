@@ -47,8 +47,7 @@
 <br>
 
 #### 서비스 아키텍처
-
-- StatefulSet을 사용해 복체 MySQL을 사용한다.  
+ 
 - User는 LoadBalancer service를 통해 nginx서버를 이용한다.
 - pod들의 내부 통신으로 외부에 노출되지 않는다.
 - HPA를 사용하여 프론트와 백엔드를 스케일링하였습니다.
@@ -71,23 +70,21 @@
 - CI : 어떤 과정을 통해 자동으로 테스트 후 결과에 따라 통합 된다는 내용 추가
 - CD : 어떤 과정을 통해자동으로 운영중인 서버에 무중단 배포 된다는 내용 추가
 
-CI 에서 어떤 테스트를 진행하고 통합하는지 추가
-- 11
-
-깃허브 프라이빗 내용 추가
-- 11
-
-배포방식 추가 
-- Rolling Update를 이용해 이전 버전과 새 버전의 파드를 점진적으로 교체하여 가용성을 유지하였습니다.
+#### CI 
+1. front 헤더의 내용을 수정 후 push
+2. ???
 
 
+
+#### CD
 1. 개발자가 자신의 소스코드를 버전 관리시스템(github)에 저장(push)한다.   
 2. push가 되면, github에서 jenkins로 webhook을 전달한다.  
 3. jenkins에서 github의 코드를 clone하고 오류를 체크한다.(shell 명령어)
 4. 테스트 코드 존재시 테스트를 실행한다. 
 5. 테스트 통과시 clone한 소스코드로 새롭게 빌드하고(백 - jar, 프론트 - dist) dockerhub에 push한다. 
-6. slack notification을 이용하여 실패, 성공, 업데이트에 대한 내용이 알리으로 전달 된다. 
-7. manifest 파일을 쿠버네티스 클러스터에 적용
+6. 배포 방식은 Rolling Update를 이용해 이전 버전과 새 버전의 파드를 점진적으로 교체하여 가용성을 유지하였습니다.
+7. slack notification을 이용하여 실패, 성공, 업데이트에 대한 내용이 알리으로 전달 된다. 
+8. manifest 파일을 쿠버네티스 클러스터에 적용
 
 <img src="./img/image.png">
 
@@ -98,8 +95,9 @@ CI 에서 어떤 테스트를 진행하고 통합하는지 추가
 <summary>프론트 엔드 CI/CD</summary>
 <div>
 <figure align="center"> 
-  <img src="z"/>
-    <p>~~~ 조회</p>
+  <p>헤더 변경(Pipeline)</p>
+  <img src="./img/cicd_1.gif"/>
+    
  </figure>
 </div>
 </details>
