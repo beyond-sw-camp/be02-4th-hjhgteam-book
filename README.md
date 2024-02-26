@@ -1,2 +1,59 @@
-<img src="./DEVOPS/img/architecture_1.PNG">
-<img src="./DEVOPS/img/architecture_2.PNG">
+<h1 align="center">BOOKSPEDIA 데브옵스 아키텍쳐 구현</h1>
+
+
+<div align="center">
+  <img src="https://github.com/beyond-sw-camp/be02-2nd-hjhgteam-book/assets/96675421/c31829c1-8b9c-48e2-892e-f4dd7b92a6a1"  style="zoom:76%;" align="center"/>
+</div>
+
+
+
+> [플레이 데이터] 한화시스템 BEYOND SW캠프 / HJHG..
+
+
+🎬[CI/CD 시연영상](https://www.youtube.com/watch?v=dhMrKTwNI8U&lc=UgzCJR3WxkvsckRyyO94AaABAg&ab_channel=%EB%94%B0%EB%9D%BC%ED%95%98%EB%A9%B4%EC%84%9C%EB%B0%B0%EC%9A%B0%EB%8A%94IT)   
+📃[프로젝트 회고록](블로그주소)
+
+<br>
+
+
+## 📌 프로젝트 목표
+
+운영중인 환경에 CI/CD 적용
+
+
+
+## 🖥️ 운영 환경
+<img src="./img/k8s아키텍처_v3.PNG">
+<img src="./img/서비스아키텍처_v3.PNG">
+
+
+## ✨ CI/CD 시나리오 설명
+
+- CI : 어떤 과정을 통해 자동으로 테스트 후 결과에 따라 통합 된다는 내용 추가
+- CD : 어떤 과정을 통해자동으로 운영중인 서버에 무중단 배포 된다는 내용 추가
+
+
+
+## CI/CD 테스트 및 결과
+
+<details>
+<summary>프론트 엔드 CI/CD</summary>
+<div>
+<figure align="center"> 
+  <img src="z"/>
+    <p>~~~ 조회</p>
+ </figure>
+</div>
+</details>
+
+
+
+## 🤼‍♂️팀원
+
+Team : 🐯 김현균
+
+Team : 🐺 이주현
+
+Team : 🐱 전민재
+
+Team : 🦁 홍현주
