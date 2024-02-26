@@ -88,7 +88,9 @@
 <figure align="center"> 
   <p>헤더 변경(Pipeline)</p>
   <img src="./img/cicd_1.gif"/>
-    
+  <p>slack 알림 사진</p>
+  <img src="./img/slack-webhook.png"/>
+  
  </figure>
 </div>
 </details>
