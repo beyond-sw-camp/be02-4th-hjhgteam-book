@@ -31,6 +31,7 @@
 <img src="./img/클러스터노드.png">
 
 <br>
+ 
 -  k8s 아키텍처
 
 <img src="./img/k8s아키텍처_v4.PNG">
@@ -39,6 +40,7 @@ Calico CNI를 사용해 연결하였고 metalib를 사용해 LoadBalancing 을 �
 Rolling Update를 이용해 이전 버전과 새 버전의 파드를 점진적으로 교체하여 가용성을 유지하였습니다.
 
 <br>
+
 -  서비스 아키텍처
 
 <img src="./img/서비스아키텍처_v4.PNG">
@@ -65,14 +67,13 @@ HPA를 사용하여 프론트와 백엔드를 스케일링하였습니다.
 - CI : 어떤 과정을 통해 자동으로 테스트 후 결과에 따라 통합 된다는 내용 추가
 - CD : 어떤 과정을 통해자동으로 운영중인 서버에 무중단 배포 된다는 내용 추가
 
-
-개발자가 자신의 소스코드를 버전 관리시스템(github)에 저장(push)한다.   
-push가 되면, github에서 jenkins로 webhook을 전달한다.  
-jenkins에서 github의 코드를 clone하고 오류를 체크한다.(shell 명령어)
-테스트 코드 존재시 테스트를 실행한다. 
-테스트 통과시 clone한 소스코드로 새롭게 빌드하고(백 - jar, 프론트 - dist) dockerhub에 push한다. 
-slack notification을 이용하여 실패, 성공, 업데이트에 대한 내용이 알리으로 전달 된다. 
-manifest 파일을 쿠버네티스 클러스터에 적용
+1. 개발자가 자신의 소스코드를 버전 관리시스템(github)에 저장(push)한다.   
+2. push가 되면, github에서 jenkins로 webhook을 전달한다.  
+3. jenkins에서 github의 코드를 clone하고 오류를 체크한다.(shell 명령어)
+4. 테스트 코드 존재시 테스트를 실행한다. 
+5. 테스트 통과시 clone한 소스코드로 새롭게 빌드하고(백 - jar, 프론트 - dist) dockerhub에 push한다. 
+6. slack notification을 이용하여 실패, 성공, 업데이트에 대한 내용이 알리으로 전달 된다. 
+7. manifest 파일을 쿠버네티스 클러스터에 적용
 
 
 ## CI/CD 테스트 및 결과
