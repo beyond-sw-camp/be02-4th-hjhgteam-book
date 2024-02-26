@@ -30,16 +30,18 @@
 
 <img src="./img/클러스터노드.png">
 
+<br>
 -  k8s 아키텍처
 
-<img src="./img/k8s아키텍처_v3.PNG">
+<img src="./img/k8s아키텍처_v4.PNG">
 마스터 1대 , 워커3대로 클러스터를 구성
 Calico CNI를 사용해 연결하였고 metalib를 사용해 LoadBalancing 을 하였습니다.
 Rolling Update를 이용해 이전 버전과 새 버전의 파드를 점진적으로 교체하여 가용성을 유지하였습니다.
 
+<br>
 -  서비스 아키텍처
 
-<img src="./img/서비스아키텍처_v3.PNG">
+<img src="./img/서비스아키텍처_v4.PNG">
 StatefulSet을 사용해 복체 MySQL을 사용한다.  
 User는 LoadBalancer service를 통해 nginx서버를 이용한다.
 pod들의 내부 통신으로 외부에 노출되지 않는다.
