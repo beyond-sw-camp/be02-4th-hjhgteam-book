@@ -18,6 +18,13 @@ spec:
       containers:
         - name: front-container
           image: kimhyeonkyun123/frontk8sjenkins:1.VERSION
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 2
+            successThreshold: 3
           ports:
             - containerPort: 80
           resources:

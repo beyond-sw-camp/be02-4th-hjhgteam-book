@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        SLACK_CHANNEL = '#book'
+        SLACK_TOKEN = credentials('slack-token')
+    }
+
     stages {
         stage('git clone') {
             steps {
@@ -69,4 +74,30 @@ pipeline {
         }
     }
 
+    post {
+        success {
+            script {
+                def slackMessage = "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) succeeded!"
+                slackSend(color: 'good', message: slackMessage, channel: env.SLACK_CHANNEL, teamDomain: 'https://app.slack.com/client/T06L34VD00K/C06L38VUHFU?ssb_vid=b5fbf50588f36896b6089d3a735fbe98', webhookUrl: env.SLACK_TOKEN)
+            }
+        }
+        failure {
+            script {
+                def slackMessage = "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) failed."
+                slackSend(color: 'danger', message: slackMessage, channel: env.SLACK_CHANNEL, teamDomain: 'https://app.slack.com/client/T06L34VD00K/C06L38VUHFU?ssb_vid=b5fbf50588f36896b6089d3a735fbe98', webhookUrl: env.SLACK_TOKEN)
+            }
+        }
+        unstable {
+            script {
+                def slackMessage = "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) is unstable."
+                slackSend(color: 'warning', message: slackMessage, channel: env.SLACK_CHANNEL, teamDomain: 'https://app.slack.com/client/T06L34VD00K/C06L38VUHFU?ssb_vid=b5fbf50588f36896b6089d3a735fbe98', webhookUrl: env.SLACK_TOKEN)
+            }
+        }
+        changed {
+            script {
+                def slackMessage = "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) had changes."
+                slackSend(color: 'warning', message: slackMessage, channel: env.SLACK_CHANNEL, teamDomain: 'https://app.slack.com/client/T06L34VD00K/C06L38VUHFU?ssb_vid=b5fbf50588f36896b6089d3a735fbe98', webhookUrl: env.SLACK_TOKEN)
+            }
+        }
+    }
 }
