@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SLACK_CHANNEL = 'book'
+        SLACK_CHANNEL = '#book'
         SLACK_TOKEN = credentials('slack-token')
     }
 
@@ -16,6 +16,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    slackSend(channel: env.SLACK_CHANNEL, color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})", webhookUrl: env.SLACK_TOKEN)
                     sh 'mvn package'
                 }
             }
@@ -68,16 +69,28 @@ pipeline {
 
     post {
         success {
-            slackSend(channel: env.SLACK_CHANNEL, color: 'good', message: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) succeeded!", tokenCredentialId: env.SLACK_TOKEN)
+            script {
+                def slackMessage = "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) succeeded!"
+                slackSend(color: 'good', message: slackMessage, channel: env.SLACK_CHANNEL, webhookUrl: env.SLACK_TOKEN)
+            }
         }
         failure {
-            slackSend(channel: env.SLACK_CHANNEL, color: 'danger', message: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) failed.", tokenCredentialId: env.SLACK_TOKEN)
+            script {
+                def slackMessage = "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) failed."
+                slackSend(color: 'danger', message: slackMessage, channel: env.SLACK_CHANNEL, webhookUrl: env.SLACK_TOKEN)
+            }
         }
         unstable {
-            slackSend(channel: env.SLACK_CHANNEL, color: 'warning', message: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) is unstable.", tokenCredentialId: env.SLACK_TOKEN)
+            script {
+                def slackMessage = "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) is unstable."
+                slackSend(color: 'warning', message: slackMessage, channel: env.SLACK_CHANNEL, webhookUrl: env.SLACK_TOKEN)
+            }
         }
         changed {
-            slackSend(channel: env.SLACK_CHANNEL, color: 'warning', message: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) had changes.", tokenCredentialId: env.SLACK_TOKEN)
+            script {
+                def slackMessage = "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) had changes."
+                slackSend(color: 'warning', message: slackMessage, channel: env.SLACK_CHANNEL, webhookUrl: env.SLACK_TOKEN)
+            }
         }
     }
 }
